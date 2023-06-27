@@ -1,0 +1,63 @@
+<app-spinner *ngIf="showSpinner$ | async"></app-spinner>
+
+<button (click)="openCreateModal()">Create Model</button> <br />
+<br />
+
+<div class="card-container">
+	<ng-container *ngFor="let user of users">
+		<div class="card-example">
+			<p>{{ user.id }}</p>
+			<p>{{ user.name }}</p>
+			<p>{{ user.email }}</p>
+			<p>{{ user.address }}</p>
+			<p>{{ user.phone }}</p>
+			<button (click)="openUpdateModal(user)">Update Model</button> <br />
+			<button (click)="openDeleteModal(user)">Delete Model</button> <br />
+		</div>
+	</ng-container>
+</div>
+
+<app-modal modalId="createUser">
+	<h2 title>Create User</h2>
+	<p subtitle>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio</p>
+	<form [formGroup]="userForm">
+		<app-input [control]="name" label="Name" type="text"></app-input>
+
+		<app-input [control]="email" label="Email" type="email"></app-input>
+
+		<app-input [control]="address" label="Address" type="text"></app-input>
+
+		<app-input [control]="phone" label="Mobile" type="text"></app-input>
+
+		<app-input [control]="password" label="Password" type="password"></app-input>
+		<div class="actions">
+			<button [disabled]="userForm.invalid" [ngClass]="{'disabled-btn': userForm.invalid}" (click)="submit()">Save User</button>
+		</div>
+	</form>
+</app-modal>
+
+<app-modal modalId="updateUser">
+	<h2 title>Update {{ selectedUser.name }}</h2>
+	<p subtitle>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio</p>
+	<form [formGroup]="userForm">
+		<app-input [control]="name" label="Name" type="text"></app-input>
+
+		<app-input [control]="email" label="Email" type="email"></app-input>
+
+		<app-input [control]="address" label="Address" type="text"></app-input>
+
+		<app-input [control]="phone" label="Mobile" type="text"></app-input>
+		<div class="actions">
+			<button (click)="submit()">Save User</button>
+		</div>
+	</form>
+</app-modal>
+
+<app-modal modalId="deleteUser">
+	<h2 title>Delete {{ selectedUser.name }}</h2>
+	<p subtitle>Are you sure you want to delete this user?</p>
+
+	<div class="actions">
+		<button (click)="deleteUser(selectedUser)">Delete User</button>
+	</div>
+</app-modal>

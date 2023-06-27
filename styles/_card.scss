@@ -1,0 +1,15 @@
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 1rem;
+	padding: 2rem;
+	.card-example {
+		background-color: #eee;
+		border-radius: 0.25rem;
+		border: 1px solid rgba(0, 0, 0, 0.125);
+		box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+		padding: 1.25rem;
+		width: 350px;
+	}
+}
